@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>食パン</title>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <style>
+    body {
+      position: relative;
+      height: 100vh;
+    }
+
+    .toaster {
+      width: auto;
+      height: 300px;
+      position: absolute;
+      right: 20px;
+      bottom: 0;
+      z-index: 10001;
+    }
+
+    .toast {
+      width: 300px;
+    }
+
+    .syokupan {
+      width: 300px;
+      height: 300px;
+      border: none;
+      box-shadow: none;
+      background-image: url('./img/syokupan.jpeg');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .toasted-syokupan {
+      width: 300px;
+      height: 300px;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      background-image: url('./img/toasted-syokupan.jpeg');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .ogura-syokupan {
+      width: 300px;
+      height: 300px;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      background-image: url('./img/ogura-syokupan.jpeg');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">TOAST!</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="last_name" type="text" class="validate">
+        <label for="last_name">名前</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate">
+        <label for="email">メールアドレス</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <a class="waves-effect waves-light btn" onclick="toast()">登録する（何も登録されません）</a>
+        <a class="waves-effect waves-light btn" onclick="syokupan()">食パン</a>
+      </div>
+    </div>
+  </div>
+
+  <img src="./img/toaster.png" class="toaster"></img>
+  <script>
+    function toast() {
+      M.toast({
+        html: '登録しようとしましたがやっぱりやめました！',
+      });
+    }
+
+    function randomSyokupan() {
+      const random = Math.random();
+
+      if (random < 0.05) {
+        return 'ogura-syokupan';
+      }
+      if (random < 0.2) {
+        return 'toasted-syokupan';
+      }
+      return 'syokupan';
+    }
+
+    function syokupan() {
+      M.toast({
+        displayLength: 500,
+        classes: randomSyokupan(),
+      });
+    }
+  </script>
+</body>
+
+</html>
